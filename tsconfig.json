@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "target": "es5",
+        "esModuleInterop": true,
+        "module": "commonJS",
+        "moduleResolution": "node",
+        "lib": [
+            "dom",
+            "ES2018",
+            "dom.iterable",
+            "esnext"
+          ],
+    },
+    "exclude": ["node_modules"]
+}

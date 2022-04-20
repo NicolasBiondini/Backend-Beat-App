@@ -1,0 +1,10 @@
+FROM node:17-alpine3.14
+
+RUN mkdir -p /app/config /app/src /app/dist
+WORKDIR /app
+COPY tsconfig.json /app/tsconfig.json
+#COPY tslint.json /app/tslint.json
+COPY package.json /app/package.json
+COPY package-lock.json /app/package-lock.json
+RUN npm install
+CMD ["npm", "run", "dev"]
