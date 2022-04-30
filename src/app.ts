@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes";
 import privateRoutes from "./routes/private.routes";
 import { verifyJWT } from "./middlewares/verifyJWT";
+import config from "./config/config";
 
 // initializations
 const app = express();
@@ -38,7 +39,7 @@ app.use(function (req, res, next) {
 });
  */
 // settings
-app.set("port", process.env.PORT || 4000);
+app.set("port", config.port || 4000);
 
 // middlwares
 app.use(morgan("dev"));
@@ -52,8 +53,9 @@ app.use(cookieParser());
 app.use(authRoutes);
 
 //middelware of JWT
-app.use(verifyJWT);
-app.use(privateRoutes);
+app.use("/private", verifyJWT);
+
+app.use("/private", privateRoutes);
 
 app.listen(app.get("port"), () => {
   console.log(`App listening on port ${app.get("port")}`);
