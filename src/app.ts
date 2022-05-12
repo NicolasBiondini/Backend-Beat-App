@@ -39,11 +39,24 @@ app.use(function (req, res, next) {
 });
  */
 // settings
+
 app.set("port", config.port || 4000);
 
 // middlwares
 app.use(morgan("dev"));
-app.use(cors({ origin: "https://www.beatapp.live/" }));
+app.use(
+  cors({
+    origin: [
+      "https://www.beatapp.live",
+      "https://beatapp.live",
+      "http://www.beatapp.live",
+      "http://beatapp.live",
+      /\.beatapp\.live$/,
+    ],
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+  })
+);
 // { origin: "http://localhost:3000" } dev
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
