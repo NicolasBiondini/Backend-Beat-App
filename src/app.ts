@@ -43,7 +43,7 @@ app.set("port", config.port || 4000);
 
 // middlwares
 app.use(morgan("dev"));
-app.use(cors());
+app.use(cors({ origin: "https://www.beatapp.live/" }));
 // { origin: "http://localhost:3000" } dev
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
